@@ -1,0 +1,32 @@
+{
+  "name": "graphql-scryfall",
+  "version": "0.0.1",
+  "description": "NodeJS/Express GraphQL server to connect with scryfall.com api",
+  "main": "index.ts",
+  "scripts": {
+    "build": "tsc --project ./tsconfig.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stefanschenk/graphql-scryfall.git"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "graphql"
+  ],
+  "author": "Stefan Schenk",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stefanschenk/graphql-scryfall/issues"
+  },
+  "homepage": "https://github.com/stefanschenk/graphql-scryfall#readme",
+  "dependencies": {
+    "apollo-server-express": "^3.10.1",
+    "graphql": "^16.6.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.7.4"
+  }
+}
