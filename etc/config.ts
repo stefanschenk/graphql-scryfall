@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 export const serverConfig = {
-  scryfallHost: process.env.SCRYFALL_HOST,
+  scryfallHost: process.env.SCRYFALL_HOST || 'api.scryfall.com',
   port: process.env.APOLLO_GRAPHQL_SERVICE_PORT ? Number.parseInt(process.env.APOLLO_GRAPHQL_SERVICE_PORT, 10) : 4000,
   redis: {
     disabled: process.env.REDIS_DISABLED ? !!process.env.REDIS_DISABLED : false,

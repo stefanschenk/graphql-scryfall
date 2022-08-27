@@ -11,7 +11,14 @@ async function startApolloServer() {
   // enabling our servers to shut down gracefully.
   const httpServer = http.createServer(app);
 
-  const { port } = serverConfig;
+  const {
+    port,
+    scryfallHost,
+    redis: { host },
+  } = serverConfig;
+
+  console.log('scryfall: ', scryfallHost);
+  console.log('redis: ', host);
 
   // More required logic for integrating with Express
   await apolloServer.start();
