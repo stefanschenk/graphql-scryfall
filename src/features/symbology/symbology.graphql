@@ -1,0 +1,44 @@
+extend type Query {
+  symbology: Symbology!
+  symbologyParseMana(cost: String!): SymbologyParseManaType! @cacheControl(maxAge: 60)
+}
+
+type Symbology {
+  object: String!
+  has_more: Boolean!
+  data: [CardSymbol!]!
+}
+
+type CardSymbol {
+  object: String!
+  symbol: String!
+  svg_uri: String!
+  loose_variant: String
+  english: String!
+  transposable: Boolean!
+  represents_mana: Boolean!
+  appears_in_mana_costs: Boolean!
+  cmc: Int!
+  funny: Boolean!
+  colors: [Color]!
+  gatherer_alternates: [String]
+}
+
+type SymbologyParseManaType {
+  object: String!
+  cost: String!
+  cmc: Float!
+  colors: [Color]!
+  colorless: Boolean!
+  monocolored: Boolean!
+  multicolored: Boolean!
+}
+
+enum Color {
+  W
+  U
+  B
+  R
+  G
+}
+

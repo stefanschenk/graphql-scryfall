@@ -1,31 +1,12 @@
-import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
-import { ApolloServer, gql } from 'apollo-server-express';
-import Keyv from 'keyv';
 import { KeyvAdapter } from '@apollo/utils.keyvadapter';
+import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
+import { ApolloServer } from 'apollo-server-express';
+import responseCachePlugin from 'apollo-server-plugin-response-cache';
+import Keyv from 'keyv';
 import { serverConfig } from '../etc/config';
 import { dataSources } from './datasources';
-import { resolvers } from './resolvers/resolvers';
-import responseCachePlugin from 'apollo-server-plugin-response-cache';
-
-// Construct a schema, using GraphQL schema language
-const typeDefs = gql`
-  #  directive @cacheControl(maxAge: Int, scope: CacheControlScope) on OBJECT | FIELD | FIELD_DEFINITION
-  #  enum CacheControlScope {
-  #    PUBLIC
-  #    PRIVATE
-  #  }
-
-  type Query {
-    catalogLandTypes: CatalogLandTypes
-  }
-
-  type CatalogLandTypes {
-    object: String
-    uri: String
-    total_values: String
-    data: [String]
-  }
-`;
+import resolvers from './resolvers';
+import typeDefs from './schemas';
 
 const {
   redis: { host, port },
@@ -39,6 +20,5 @@ export const apolloServer = new ApolloServer({
     disableBatchReads: true,
   }),
   dataSources,
-  plugins: [ApolloServerPluginLandingPageLocalDefault({ embed: true })],
+  plugins: [ApolloServerPluginLandingPageLocalDefault({ embed: true }), responseCachePlugin()],
 });
-//responseCachePlugin()

@@ -1,0 +1,12 @@
+extend type Query {
+  catalogCardNames: CatalogType!
+  catalogLandTypes: CatalogType!
+}
+
+type CatalogType {
+  object: String!
+  uri: String!
+  total_values: String!
+  data: [String!]!
+}
+

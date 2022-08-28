@@ -16,8 +16,15 @@ export class ScryfallDatasource extends HTTPDataSource {
   // }
   constructor(baseURL: string, pool: Pool) {
     // global client options
+    // set cache TTL for each request in this datasource
     super(baseURL, {
       pool,
+      requestOptions: {
+        requestCache: {
+          maxTtl: 86400, // 24h, Scryfall has daily incremental updates, fetching more frequently than 24 hours does not yield new data
+          maxTtlIfError: 0, // also 24h, will respond with the cached response in case of an error
+        },
+      },
     });
     // super(baseURL, {
     //   pool,
@@ -39,11 +46,10 @@ export class ScryfallDatasource extends HTTPDataSource {
   }
 
   async getCatalogLandTypes() {
-    return this.get(`/catalog/land-types`, {
-      requestCache: {
-        maxTtl: 10 * 60, // 10min, will respond for 10min with the cached result (updated every 10min)
-        maxTtlIfError: 30 * 60, // 30min, will respond with the cached response in case of an error (for further 20min)
-      },
-    });
+    return this.get(`/catalog/land-types`);
+  }
+
+  async getCardNames() {
+    return this.get(`/catalog/card-names`);
   }
 }
