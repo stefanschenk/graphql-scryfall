@@ -2,7 +2,7 @@ import { HTTPDataSource } from 'apollo-datasource-http';
 import type { Request, Response } from 'apollo-datasource-http';
 import { Pool } from 'undici';
 
-export class ScryfallDatasource extends HTTPDataSource {
+export class CatalogDatasource extends HTTPDataSource {
   // constructor() {
   //   // Always call super()
   //   super();
