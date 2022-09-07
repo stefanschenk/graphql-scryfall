@@ -1,11 +1,12 @@
-directive @cacheControl(maxAge: Int, scope: CacheControlScope) on OBJECT | FIELD | FIELD_DEFINITION
-  enum CacheControlScope {
-    PUBLIC
-    PRIVATE
-  }
-
 type ReleaseInfo {
   name: String!
   version: String!
   description: String!
+}
+
+interface List {
+  has_more: Boolean!
+  next_page: String
+  total_cards: Int
+  warnings: [String]
 }

@@ -8,12 +8,16 @@ interface ContextWithDataSources {
 
 export default {
   Query: {
+    catalogArtistNames: async (root: unknown, args: unknown, { dataSources }: ContextWithDataSources) => {
+      const result = await dataSources.catalog.getArtistNames();
+      return result.body;
+    },
     catalogCardNames: async (root: unknown, args: unknown, { dataSources }: ContextWithDataSources) => {
-      const result = await dataSources.scryfall.getCardNames();
+      const result = await dataSources.catalog.getCardNames();
       return result.body;
     },
     catalogLandTypes: async (root: unknown, args: unknown, { dataSources }: ContextWithDataSources) => {
-      const result = await dataSources.scryfall.getCatalogLandTypes();
+      const result = await dataSources.catalog.getCatalogLandTypes();
       return result.body;
     },
   },

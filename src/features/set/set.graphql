@@ -1,0 +1,60 @@
+extend type Query {
+  sets: Sets!
+  setByCode(code: String!): Set!
+  setById(id: String!): Set!
+}
+
+type Sets implements List {
+  data: [Set!]!
+  has_more: Boolean!
+  next_page: String
+  total_cards: Int
+  warnings: [String]
+}
+
+type Set {
+  id: String!
+  code:	String!
+  mtgo_code:	String
+  tcgplayer_id:	Int
+  name:	String!
+  set_type:	String!
+  released_at:	String
+  block_code:	String
+  block:	String
+  parent_set_code:	String
+  card_count:	Int!
+  printed_size:	Int
+  digital:	Boolean!
+  foil_only:	Boolean!
+  nonfoil_only:	Boolean!
+  scryfall_uri:	String!
+  uri:	String!
+  icon_svg_uri:	String!
+  search_uri:	String!
+}
+
+enum SetType {
+  core
+  expansion
+  masters
+  alchemy
+  masterpiece
+  arsenal
+  from_the_vault
+  spellbook
+  premium_deck
+  duel_deck
+  draft_innovation
+  treasure_chest
+  commander
+  planechase
+  archenemy
+  vanguard
+  funny
+  starter
+  box
+  promo
+  token
+  memorabilia
+}

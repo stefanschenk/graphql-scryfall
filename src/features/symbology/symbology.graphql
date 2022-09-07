@@ -18,7 +18,7 @@ type CardSymbol {
   transposable: Boolean!
   represents_mana: Boolean!
   appears_in_mana_costs: Boolean!
-  cmc: Int!
+  cmc: Float
   funny: Boolean!
   colors: [Color]!
   gatherer_alternates: [String]

@@ -20,5 +20,10 @@ export const apolloServer = new ApolloServer({
     disableBatchReads: true,
   }),
   dataSources,
-  plugins: [ApolloServerPluginLandingPageLocalDefault({ embed: true }), responseCachePlugin()],
+  plugins: [
+    ApolloServerPluginLandingPageLocalDefault({ embed: true }),
+    responseCachePlugin({
+      sessionId: requestContext => requestContext?.request?.http?.headers.get('session-id') || null,
+    }),
+  ],
 });

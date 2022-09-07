@@ -7,6 +7,7 @@
     "start": "ts-node ./src/main.ts",
     "build": "tsc --project ./tsconfig.json",
     "prebuild": "rimraf ./dist",
+    "gen:gql": "graphql-codegen --config codegen.yml",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -36,6 +37,9 @@
     "keyv": "^4.4.1"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "2.11.8",
+    "@graphql-codegen/typescript": "2.7.3",
+    "@graphql-codegen/typescript-resolvers": "2.7.3",
     "prettier": "^2.7.1",
     "rimraf": "^3.0.2",
     "ts-node": "^10.9.1",

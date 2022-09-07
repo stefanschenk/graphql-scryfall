@@ -45,6 +45,10 @@ export class CatalogDatasource extends HTTPDataSource {
     return super.onResponse(request, response);
   }
 
+  async getArtistNames() {
+    return this.get(`/catalog/artist-names`);
+  }
+
   async getCatalogLandTypes() {
     return this.get(`/catalog/land-types`);
   }
