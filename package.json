@@ -6,7 +6,8 @@
   "scripts": {
     "start": "ts-node ./src/main.ts",
     "build": "tsc --project ./tsconfig.json",
-    "prebuild": "rimraf ./dist",
+    "prebuild": "rimraf ./dist && npm run gen:gql",
+    "postbuild": "node scripts/postbuild.js",
     "gen:gql": "graphql-codegen --config codegen.yml",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -40,6 +41,7 @@
     "@graphql-codegen/cli": "2.11.8",
     "@graphql-codegen/typescript": "2.7.3",
     "@graphql-codegen/typescript-resolvers": "2.7.3",
+    "cpy": "^8.1.2",
     "prettier": "^2.7.1",
     "rimraf": "^3.0.2",
     "ts-node": "^10.9.1",
