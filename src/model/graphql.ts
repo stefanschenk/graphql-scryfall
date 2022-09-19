@@ -16,47 +16,64 @@ export type Scalars = {
 
 export type GqlCard = {
   __typename?: 'Card';
-  artist: Scalars['String'];
-  artist_ids: Array<Scalars['String']>;
+  all_parts?: Maybe<Array<Maybe<GqlRelatedCard>>>;
+  arena_id?: Maybe<Scalars['Int']>;
+  artist?: Maybe<Scalars['String']>;
+  artist_ids: Array<Maybe<Scalars['String']>>;
   booster: Scalars['Boolean'];
   border_color: Scalars['String'];
-  card_back_id?: Maybe<Scalars['String']>;
+  card_back_id: Scalars['String'];
+  card_faces?: Maybe<Array<Maybe<GqlCardFace>>>;
   cardmarket_id?: Maybe<Scalars['Int']>;
-  cmc: Scalars['Int'];
+  cmc?: Maybe<Scalars['Float']>;
   collector_number: Scalars['String'];
-  color_identity: Array<Maybe<Color>>;
-  colors: Array<Maybe<Color>>;
+  color_identity?: Maybe<Array<Maybe<Color>>>;
+  color_indicator?: Maybe<Array<Maybe<Color>>>;
+  colors?: Maybe<Array<Maybe<Color>>>;
+  content_warning?: Maybe<Scalars['Boolean']>;
   digital: Scalars['Boolean'];
   edhrec_rank?: Maybe<Scalars['Int']>;
-  finishes: Array<Scalars['String']>;
+  finishes?: Maybe<Array<Maybe<Scalars['String']>>>;
+  flavor_name?: Maybe<Scalars['String']>;
   flavor_text?: Maybe<Scalars['String']>;
   foil: Scalars['Boolean'];
   frame: Scalars['String'];
   frame_effects?: Maybe<Array<Maybe<Scalars['String']>>>;
   full_art: Scalars['Boolean'];
   games: Array<Scalars['String']>;
+  hand_modifier?: Maybe<Scalars['String']>;
   highres_image: Scalars['Boolean'];
   id: Scalars['String'];
-  illustration_id: Scalars['String'];
+  illustration_id?: Maybe<Scalars['String']>;
   image_status: Scalars['String'];
-  image_uris: GqlImageUris;
+  image_uris?: Maybe<GqlImageUris>;
   keywords: Array<Maybe<Scalars['String']>>;
   lang: Scalars['String'];
   layout: Scalars['String'];
   legalities: GqlLegalities;
+  life_modifier?: Maybe<Scalars['String']>;
+  loyalty?: Maybe<Scalars['String']>;
   mana_cost?: Maybe<Scalars['String']>;
-  multiverse_ids: Array<Maybe<Scalars['String']>>;
+  mtgo_foil_id?: Maybe<Scalars['Int']>;
+  mtgo_id?: Maybe<Scalars['Int']>;
+  multiverse_ids?: Maybe<Array<Maybe<Scalars['Int']>>>;
   name: Scalars['String'];
   nonfoil: Scalars['Boolean'];
   object: Scalars['String'];
   oracle_id: Scalars['String'];
-  oracle_text: Scalars['String'];
+  oracle_text?: Maybe<Scalars['String']>;
   oversized: Scalars['Boolean'];
+  penny_rank?: Maybe<Scalars['Int']>;
   power?: Maybe<Scalars['String']>;
   preview?: Maybe<GqlPreview>;
   prices: GqlPrices;
+  printed_name?: Maybe<Scalars['String']>;
+  printed_text?: Maybe<Scalars['String']>;
+  printed_type_line?: Maybe<Scalars['String']>;
   prints_search_uri: Scalars['String'];
+  produced_mana?: Maybe<Array<Maybe<Color>>>;
   promo: Scalars['Boolean'];
+  promo_types?: Maybe<Array<Maybe<Scalars['String']>>>;
   purchase_uris?: Maybe<GqlPurchaseUris>;
   rarity: Rarity;
   related_uris?: Maybe<GqlRelatedUris>;
@@ -66,6 +83,7 @@ export type GqlCard = {
   rulings_uri: Scalars['String'];
   scryfall_set_uri: Scalars['String'];
   scryfall_uri: Scalars['String'];
+  security_stamp?: Maybe<Scalars['String']>;
   set: Scalars['String'];
   set_id: Scalars['String'];
   set_name: Scalars['String'];
@@ -73,12 +91,40 @@ export type GqlCard = {
   set_type: Scalars['String'];
   set_uri: Scalars['String'];
   story_spotlight: Scalars['Boolean'];
+  tcgplayer_etched_id?: Maybe<Scalars['Int']>;
   tcgplayer_id?: Maybe<Scalars['Int']>;
   textless: Scalars['Boolean'];
   toughness?: Maybe<Scalars['String']>;
   type_line: Scalars['String'];
   uri: Scalars['String'];
   variation: Scalars['Boolean'];
+  variation_of?: Maybe<Scalars['String']>;
+  watermark?: Maybe<Scalars['String']>;
+};
+
+export type GqlCardFace = {
+  __typename?: 'CardFace';
+  artist?: Maybe<Scalars['String']>;
+  cmc?: Maybe<Scalars['Float']>;
+  color_indicator?: Maybe<Array<Maybe<Color>>>;
+  colors?: Maybe<Array<Maybe<Color>>>;
+  flavor_text?: Maybe<Scalars['String']>;
+  illustration_id?: Maybe<Scalars['String']>;
+  image_uris?: Maybe<GqlImageUris>;
+  layout?: Maybe<Scalars['String']>;
+  loyalty?: Maybe<Scalars['String']>;
+  mana_cost: Scalars['String'];
+  name: Scalars['String'];
+  object: Scalars['String'];
+  oracle_id?: Maybe<Scalars['String']>;
+  oracle_text?: Maybe<Scalars['String']>;
+  power?: Maybe<Scalars['String']>;
+  printed_name?: Maybe<Scalars['String']>;
+  printed_text?: Maybe<Scalars['String']>;
+  printed_type_line?: Maybe<Scalars['String']>;
+  toughness?: Maybe<Scalars['String']>;
+  type_line?: Maybe<Scalars['String']>;
+  watermark?: Maybe<Scalars['String']>;
 };
 
 export type GqlCardSymbol = {
@@ -110,7 +156,7 @@ export type GqlCatalogType = {
   __typename?: 'CatalogType';
   data: Array<Scalars['String']>;
   object: Scalars['String'];
-  total_values: Scalars['String'];
+  total_values: Scalars['Int'];
   uri: Scalars['String'];
 };
 
@@ -235,6 +281,16 @@ export enum Rarity {
   RARE = 'RARE',
   UNCOMMON = 'UNCOMMON'
 }
+
+export type GqlRelatedCard = {
+  __typename?: 'RelatedCard';
+  component: Scalars['String'];
+  id: Scalars['String'];
+  name: Scalars['String'];
+  object: Scalars['String'];
+  type_line: Scalars['String'];
+  uri: Scalars['String'];
+};
 
 export type GqlRelatedUris = {
   __typename?: 'RelatedUris';
@@ -397,6 +453,7 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 export type GqlResolversTypes = {
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   Card: ResolverTypeWrapper<GqlCard>;
+  CardFace: ResolverTypeWrapper<GqlCardFace>;
   CardSymbol: ResolverTypeWrapper<GqlCardSymbol>;
   Cards: ResolverTypeWrapper<GqlCards>;
   CatalogType: ResolverTypeWrapper<GqlCatalogType>;
@@ -412,6 +469,7 @@ export type GqlResolversTypes = {
   PurchaseUris: ResolverTypeWrapper<GqlPurchaseUris>;
   Query: ResolverTypeWrapper<{}>;
   Rarity: Rarity;
+  RelatedCard: ResolverTypeWrapper<GqlRelatedCard>;
   RelatedUris: ResolverTypeWrapper<GqlRelatedUris>;
   ReleaseInfo: ResolverTypeWrapper<GqlReleaseInfo>;
   Set: ResolverTypeWrapper<GqlSet>;
@@ -426,6 +484,7 @@ export type GqlResolversTypes = {
 export type GqlResolversParentTypes = {
   Boolean: Scalars['Boolean'];
   Card: GqlCard;
+  CardFace: GqlCardFace;
   CardSymbol: GqlCardSymbol;
   Cards: GqlCards;
   CatalogType: GqlCatalogType;
@@ -438,6 +497,7 @@ export type GqlResolversParentTypes = {
   Prices: GqlPrices;
   PurchaseUris: GqlPurchaseUris;
   Query: {};
+  RelatedCard: GqlRelatedCard;
   RelatedUris: GqlRelatedUris;
   ReleaseInfo: GqlReleaseInfo;
   Set: GqlSet;
@@ -448,47 +508,64 @@ export type GqlResolversParentTypes = {
 };
 
 export type GqlCardResolvers<ContextType = any, ParentType extends GqlResolversParentTypes['Card'] = GqlResolversParentTypes['Card']> = {
-  artist?: Resolver<GqlResolversTypes['String'], ParentType, ContextType>;
-  artist_ids?: Resolver<Array<GqlResolversTypes['String']>, ParentType, ContextType>;
+  all_parts?: Resolver<Maybe<Array<Maybe<GqlResolversTypes['RelatedCard']>>>, ParentType, ContextType>;
+  arena_id?: Resolver<Maybe<GqlResolversTypes['Int']>, ParentType, ContextType>;
+  artist?: Resolver<Maybe<GqlResolversTypes['String']>, ParentType, ContextType>;
+  artist_ids?: Resolver<Array<Maybe<GqlResolversTypes['String']>>, ParentType, ContextType>;
   booster?: Resolver<GqlResolversTypes['Boolean'], ParentType, ContextType>;
   border_color?: Resolver<GqlResolversTypes['String'], ParentType, ContextType>;
-  card_back_id?: Resolver<Maybe<GqlResolversTypes['String']>, ParentType, ContextType>;
+  card_back_id?: Resolver<GqlResolversTypes['String'], ParentType, ContextType>;
+  card_faces?: Resolver<Maybe<Array<Maybe<GqlResolversTypes['CardFace']>>>, ParentType, ContextType>;
   cardmarket_id?: Resolver<Maybe<GqlResolversTypes['Int']>, ParentType, ContextType>;
-  cmc?: Resolver<GqlResolversTypes['Int'], ParentType, ContextType>;
+  cmc?: Resolver<Maybe<GqlResolversTypes['Float']>, ParentType, ContextType>;
   collector_number?: Resolver<GqlResolversTypes['String'], ParentType, ContextType>;
-  color_identity?: Resolver<Array<Maybe<GqlResolversTypes['Color']>>, ParentType, ContextType>;
-  colors?: Resolver<Array<Maybe<GqlResolversTypes['Color']>>, ParentType, ContextType>;
+  color_identity?: Resolver<Maybe<Array<Maybe<GqlResolversTypes['Color']>>>, ParentType, ContextType>;
+  color_indicator?: Resolver<Maybe<Array<Maybe<GqlResolversTypes['Color']>>>, ParentType, ContextType>;
+  colors?: Resolver<Maybe<Array<Maybe<GqlResolversTypes['Color']>>>, ParentType, ContextType>;
+  content_warning?: Resolver<Maybe<GqlResolversTypes['Boolean']>, ParentType, ContextType>;
   digital?: Resolver<GqlResolversTypes['Boolean'], ParentType, ContextType>;
   edhrec_rank?: Resolver<Maybe<GqlResolversTypes['Int']>, ParentType, ContextType>;
-  finishes?: Resolver<Array<GqlResolversTypes['String']>, ParentType, ContextType>;
+  finishes?: Resolver<Maybe<Array<Maybe<GqlResolversTypes['String']>>>, ParentType, ContextType>;
+  flavor_name?: Resolver<Maybe<GqlResolversTypes['String']>, ParentType, ContextType>;
   flavor_text?: Resolver<Maybe<GqlResolversTypes['String']>, ParentType, ContextType>;
   foil?: Resolver<GqlResolversTypes['Boolean'], ParentType, ContextType>;
   frame?: Resolver<GqlResolversTypes['String'], ParentType, ContextType>;
   frame_effects?: Resolver<Maybe<Array<Maybe<GqlResolversTypes['String']>>>, ParentType, ContextType>;
   full_art?: Resolver<GqlResolversTypes['Boolean'], ParentType, ContextType>;
   games?: Resolver<Array<GqlResolversTypes['String']>, ParentType, ContextType>;
+  hand_modifier?: Resolver<Maybe<GqlResolversTypes['String']>, ParentType, ContextType>;
   highres_image?: Resolver<GqlResolversTypes['Boolean'], ParentType, ContextType>;
   id?: Resolver<GqlResolversTypes['String'], ParentType, ContextType>;
-  illustration_id?: Resolver<GqlResolversTypes['String'], ParentType, ContextType>;
+  illustration_id?: Resolver<Maybe<GqlResolversTypes['String']>, ParentType, ContextType>;
   image_status?: Resolver<GqlResolversTypes['String'], ParentType, ContextType>;
-  image_uris?: Resolver<GqlResolversTypes['ImageUris'], ParentType, ContextType>;
+  image_uris?: Resolver<Maybe<GqlResolversTypes['ImageUris']>, ParentType, ContextType>;
   keywords?: Resolver<Array<Maybe<GqlResolversTypes['String']>>, ParentType, ContextType>;
   lang?: Resolver<GqlResolversTypes['String'], ParentType, ContextType>;
   layout?: Resolver<GqlResolversTypes['String'], ParentType, ContextType>;
   legalities?: Resolver<GqlResolversTypes['Legalities'], ParentType, ContextType>;
+  life_modifier?: Resolver<Maybe<GqlResolversTypes['String']>, ParentType, ContextType>;
+  loyalty?: Resolver<Maybe<GqlResolversTypes['String']>, ParentType, ContextType>;
   mana_cost?: Resolver<Maybe<GqlResolversTypes['String']>, ParentType, ContextType>;
-  multiverse_ids?: Resolver<Array<Maybe<GqlResolversTypes['String']>>, ParentType, ContextType>;
+  mtgo_foil_id?: Resolver<Maybe<GqlResolversTypes['Int']>, ParentType, ContextType>;
+  mtgo_id?: Resolver<Maybe<GqlResolversTypes['Int']>, ParentType, ContextType>;
+  multiverse_ids?: Resolver<Maybe<Array<Maybe<GqlResolversTypes['Int']>>>, ParentType, ContextType>;
   name?: Resolver<GqlResolversTypes['String'], ParentType, ContextType>;
   nonfoil?: Resolver<GqlResolversTypes['Boolean'], ParentType, ContextType>;
   object?: Resolver<GqlResolversTypes['String'], ParentType, ContextType>;
   oracle_id?: Resolver<GqlResolversTypes['String'], ParentType, ContextType>;
-  oracle_text?: Resolver<GqlResolversTypes['String'], ParentType, ContextType>;
+  oracle_text?: Resolver<Maybe<GqlResolversTypes['String']>, ParentType, ContextType>;
   oversized?: Resolver<GqlResolversTypes['Boolean'], ParentType, ContextType>;
+  penny_rank?: Resolver<Maybe<GqlResolversTypes['Int']>, ParentType, ContextType>;
   power?: Resolver<Maybe<GqlResolversTypes['String']>, ParentType, ContextType>;
   preview?: Resolver<Maybe<GqlResolversTypes['Preview']>, ParentType, ContextType>;
   prices?: Resolver<GqlResolversTypes['Prices'], ParentType, ContextType>;
+  printed_name?: Resolver<Maybe<GqlResolversTypes['String']>, ParentType, ContextType>;
+  printed_text?: Resolver<Maybe<GqlResolversTypes['String']>, ParentType, ContextType>;
+  printed_type_line?: Resolver<Maybe<GqlResolversTypes['String']>, ParentType, ContextType>;
   prints_search_uri?: Resolver<GqlResolversTypes['String'], ParentType, ContextType>;
+  produced_mana?: Resolver<Maybe<Array<Maybe<GqlResolversTypes['Color']>>>, ParentType, ContextType>;
   promo?: Resolver<GqlResolversTypes['Boolean'], ParentType, ContextType>;
+  promo_types?: Resolver<Maybe<Array<Maybe<GqlResolversTypes['String']>>>, ParentType, ContextType>;
   purchase_uris?: Resolver<Maybe<GqlResolversTypes['PurchaseUris']>, ParentType, ContextType>;
   rarity?: Resolver<GqlResolversTypes['Rarity'], ParentType, ContextType>;
   related_uris?: Resolver<Maybe<GqlResolversTypes['RelatedUris']>, ParentType, ContextType>;
@@ -498,6 +575,7 @@ export type GqlCardResolvers<ContextType = any, ParentType extends GqlResolversP
   rulings_uri?: Resolver<GqlResolversTypes['String'], ParentType, ContextType>;
   scryfall_set_uri?: Resolver<GqlResolversTypes['String'], ParentType, ContextType>;
   scryfall_uri?: Resolver<GqlResolversTypes['String'], ParentType, ContextType>;
+  security_stamp?: Resolver<Maybe<GqlResolversTypes['String']>, ParentType, ContextType>;
   set?: Resolver<GqlResolversTypes['String'], ParentType, ContextType>;
   set_id?: Resolver<GqlResolversTypes['String'], ParentType, ContextType>;
   set_name?: Resolver<GqlResolversTypes['String'], ParentType, ContextType>;
@@ -505,12 +583,40 @@ export type GqlCardResolvers<ContextType = any, ParentType extends GqlResolversP
   set_type?: Resolver<GqlResolversTypes['String'], ParentType, ContextType>;
   set_uri?: Resolver<GqlResolversTypes['String'], ParentType, ContextType>;
   story_spotlight?: Resolver<GqlResolversTypes['Boolean'], ParentType, ContextType>;
+  tcgplayer_etched_id?: Resolver<Maybe<GqlResolversTypes['Int']>, ParentType, ContextType>;
   tcgplayer_id?: Resolver<Maybe<GqlResolversTypes['Int']>, ParentType, ContextType>;
   textless?: Resolver<GqlResolversTypes['Boolean'], ParentType, ContextType>;
   toughness?: Resolver<Maybe<GqlResolversTypes['String']>, ParentType, ContextType>;
   type_line?: Resolver<GqlResolversTypes['String'], ParentType, ContextType>;
   uri?: Resolver<GqlResolversTypes['String'], ParentType, ContextType>;
   variation?: Resolver<GqlResolversTypes['Boolean'], ParentType, ContextType>;
+  variation_of?: Resolver<Maybe<GqlResolversTypes['String']>, ParentType, ContextType>;
+  watermark?: Resolver<Maybe<GqlResolversTypes['String']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type GqlCardFaceResolvers<ContextType = any, ParentType extends GqlResolversParentTypes['CardFace'] = GqlResolversParentTypes['CardFace']> = {
+  artist?: Resolver<Maybe<GqlResolversTypes['String']>, ParentType, ContextType>;
+  cmc?: Resolver<Maybe<GqlResolversTypes['Float']>, ParentType, ContextType>;
+  color_indicator?: Resolver<Maybe<Array<Maybe<GqlResolversTypes['Color']>>>, ParentType, ContextType>;
+  colors?: Resolver<Maybe<Array<Maybe<GqlResolversTypes['Color']>>>, ParentType, ContextType>;
+  flavor_text?: Resolver<Maybe<GqlResolversTypes['String']>, ParentType, ContextType>;
+  illustration_id?: Resolver<Maybe<GqlResolversTypes['String']>, ParentType, ContextType>;
+  image_uris?: Resolver<Maybe<GqlResolversTypes['ImageUris']>, ParentType, ContextType>;
+  layout?: Resolver<Maybe<GqlResolversTypes['String']>, ParentType, ContextType>;
+  loyalty?: Resolver<Maybe<GqlResolversTypes['String']>, ParentType, ContextType>;
+  mana_cost?: Resolver<GqlResolversTypes['String'], ParentType, ContextType>;
+  name?: Resolver<GqlResolversTypes['String'], ParentType, ContextType>;
+  object?: Resolver<GqlResolversTypes['String'], ParentType, ContextType>;
+  oracle_id?: Resolver<Maybe<GqlResolversTypes['String']>, ParentType, ContextType>;
+  oracle_text?: Resolver<Maybe<GqlResolversTypes['String']>, ParentType, ContextType>;
+  power?: Resolver<Maybe<GqlResolversTypes['String']>, ParentType, ContextType>;
+  printed_name?: Resolver<Maybe<GqlResolversTypes['String']>, ParentType, ContextType>;
+  printed_text?: Resolver<Maybe<GqlResolversTypes['String']>, ParentType, ContextType>;
+  printed_type_line?: Resolver<Maybe<GqlResolversTypes['String']>, ParentType, ContextType>;
+  toughness?: Resolver<Maybe<GqlResolversTypes['String']>, ParentType, ContextType>;
+  type_line?: Resolver<Maybe<GqlResolversTypes['String']>, ParentType, ContextType>;
+  watermark?: Resolver<Maybe<GqlResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -542,7 +648,7 @@ export type GqlCardsResolvers<ContextType = any, ParentType extends GqlResolvers
 export type GqlCatalogTypeResolvers<ContextType = any, ParentType extends GqlResolversParentTypes['CatalogType'] = GqlResolversParentTypes['CatalogType']> = {
   data?: Resolver<Array<GqlResolversTypes['String']>, ParentType, ContextType>;
   object?: Resolver<GqlResolversTypes['String'], ParentType, ContextType>;
-  total_values?: Resolver<GqlResolversTypes['String'], ParentType, ContextType>;
+  total_values?: Resolver<GqlResolversTypes['Int'], ParentType, ContextType>;
   uri?: Resolver<GqlResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -626,6 +732,16 @@ export type GqlQueryResolvers<ContextType = any, ParentType extends GqlResolvers
   symbologyParseMana?: Resolver<GqlResolversTypes['SymbologyParseManaType'], ParentType, ContextType, RequireFields<GqlQuerysymbologyParseManaArgs, 'cost'>>;
 };
 
+export type GqlRelatedCardResolvers<ContextType = any, ParentType extends GqlResolversParentTypes['RelatedCard'] = GqlResolversParentTypes['RelatedCard']> = {
+  component?: Resolver<GqlResolversTypes['String'], ParentType, ContextType>;
+  id?: Resolver<GqlResolversTypes['String'], ParentType, ContextType>;
+  name?: Resolver<GqlResolversTypes['String'], ParentType, ContextType>;
+  object?: Resolver<GqlResolversTypes['String'], ParentType, ContextType>;
+  type_line?: Resolver<GqlResolversTypes['String'], ParentType, ContextType>;
+  uri?: Resolver<GqlResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type GqlRelatedUrisResolvers<ContextType = any, ParentType extends GqlResolversParentTypes['RelatedUris'] = GqlResolversParentTypes['RelatedUris']> = {
   edhrec?: Resolver<Maybe<GqlResolversTypes['String']>, ParentType, ContextType>;
   gatherer?: Resolver<Maybe<GqlResolversTypes['String']>, ParentType, ContextType>;
@@ -693,6 +809,7 @@ export type GqlSymbologyParseManaTypeResolvers<ContextType = any, ParentType ext
 
 export type GqlResolvers<ContextType = any> = {
   Card?: GqlCardResolvers<ContextType>;
+  CardFace?: GqlCardFaceResolvers<ContextType>;
   CardSymbol?: GqlCardSymbolResolvers<ContextType>;
   Cards?: GqlCardsResolvers<ContextType>;
   CatalogType?: GqlCatalogTypeResolvers<ContextType>;
@@ -703,6 +820,7 @@ export type GqlResolvers<ContextType = any> = {
   Prices?: GqlPricesResolvers<ContextType>;
   PurchaseUris?: GqlPurchaseUrisResolvers<ContextType>;
   Query?: GqlQueryResolvers<ContextType>;
+  RelatedCard?: GqlRelatedCardResolvers<ContextType>;
   RelatedUris?: GqlRelatedUrisResolvers<ContextType>;
   ReleaseInfo?: GqlReleaseInfoResolvers<ContextType>;
   Set?: GqlSetResolvers<ContextType>;

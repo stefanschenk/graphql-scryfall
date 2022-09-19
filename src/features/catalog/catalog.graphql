@@ -1,13 +1,13 @@
 extend type Query {
   catalogArtistNames: CatalogType!
   catalogCardNames: CatalogType!
-  catalogLandTypes: CatalogType!
+  catalogLandTypes: CatalogType! @cacheControl(maxAge: 0)
 }
 
 type CatalogType {
   object: String!
   uri: String!
-  total_values: String!
+  total_values: Int!
   data: [String!]!
 }
 

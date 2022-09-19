@@ -1,6 +1,6 @@
 {
   "name": "graphql-scryfall",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "NodeJS/Express GraphQL server to connect with scryfall.com api",
   "main": "index.ts",
   "scripts": {
