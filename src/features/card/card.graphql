@@ -201,6 +201,7 @@ enum Legality {
 }
 
 enum Rarity {
+  bonus
   COMMON
   UNCOMMON
   RARE
