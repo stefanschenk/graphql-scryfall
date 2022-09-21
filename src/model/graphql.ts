@@ -280,7 +280,8 @@ export enum Rarity {
   MYTHIC = 'MYTHIC',
   RARE = 'RARE',
   UNCOMMON = 'UNCOMMON',
-  bonus = 'bonus'
+  bonus = 'bonus',
+  special = 'special'
 }
 
 export type GqlRelatedCard = {
